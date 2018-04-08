@@ -1,0 +1,62 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="scatter-menu">
+    <template>
+        <style>
+            :host {
+                --menu-order : 1;
+                --menu-size  : 50%;
+                --item-size  : 50px;
+                --space-size : 20px;
+            }
+
+            .item {
+                position      : absolute;
+                top           : 0;
+                left          : 0;
+                width         : var(--item-size);
+                height        : var(--item-size);
+                border        : 1px solid #000000;
+                border-radius : 50%;
+                transition    : all 800ms ease;
+            }
+
+            .item.active {
+                left : calc(var(--menu-size) - (var(--item-size) * var(--menu-order)) - (var(--space-size) * calc(var(--menu-order) - 1)));
+            }
+        </style>
+        <button id="item" class="item"></button>
+    </template>
+    <script>
+        /**
+         * `scatter-menu-item`
+         *
+         *
+         * @customElement
+         * @polymer
+         * @demo demo/index.html
+         */
+        class ScatterMenuItem extends Polymer.Element {
+            static get is () { return 'scatter-menu-item'; }
+
+            static get properties () {
+                return {
+                    menuOrder: {
+                        type    : Number,
+                        observer: '_setOrder'
+                    }
+                };
+            }
+
+            ready () {
+                super.ready ();
+            }
+
+            _setOrder (val, order) {
+                this.style.setProperty ('--menu-order', val);
+            }
+        }
+
+        window.customElements.define (ScatterMenuItem.is, ScatterMenuItem);
+    </script>
+</dom-module>
