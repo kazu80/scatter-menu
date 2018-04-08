@@ -5,6 +5,10 @@
         <style>
             :host {
                 display : block;
+
+                --menu-size : 50%;
+                --item-size : 50px;
+                --space-size : 20px;
             }
 
             button {
@@ -25,15 +29,27 @@
                 position      : absolute;
                 top           : 10px;
                 left          : 10px;
-                width         : 50px;
-                height        : 50px;
+                width         : var(--item-size);
+                height        : var(--item-size);
                 border        : 1px solid #000000;
                 border-radius : 50%;
                 transition    : all 800ms ease;
             }
 
-            .item.active {
-                left : calc(100% - 50px);
+            .item.active01 {
+                left : calc(var(--menu-size) - (var(--item-size) * 1) - (var(--space-size) * 0));
+            }
+
+            .item.active02 {
+                left : calc(var(--menu-size) - (var(--item-size) * 2) - (var(--space-size) * 1));
+            }
+
+            .item.active03 {
+                left : calc(var(--menu-size) - (var(--item-size) * 3) - (var(--space-size) * 2));
+            }
+
+            .item.active04 {
+                left : calc(var(--menu-size) - (var(--item-size) * 4) - (var(--space-size) * 3));
             }
 
         </style>
@@ -41,7 +57,10 @@
         <button id="btn">open / close</button>
 
         <div class="menu">
-            <div id="item" class="item"></div>
+            <div id="item01" class="item"></div>
+            <div id="item02" class="item"></div>
+            <div id="item03" class="item"></div>
+            <div id="item04" class="item"></div>
         </div>
 
     </template>
@@ -72,7 +91,7 @@
                 super.ready ();
 
                 this.$.btn.addEventListener ('click', () => {
-                    this.isOpen = true;
+                    this.isOpen = !this.isOpen;
                 });
             }
 
@@ -82,8 +101,24 @@
                 }
 
                 if (val) {
-                    this.$.item.classList.add ('active');
+                    this._active ();
+                } else {
+                    this._back ();
                 }
+            }
+
+            _active () {
+                this.$.item01.classList.add ('active01');
+                this.$.item02.classList.add ('active02');
+                this.$.item03.classList.add ('active03');
+                this.$.item04.classList.add ('active04');
+            }
+
+            _back () {
+                this.$.item01.classList.remove ('active01');
+                this.$.item02.classList.remove ('active02');
+                this.$.item03.classList.remove ('active03');
+                this.$.item04.classList.remove ('active04');
             }
         }
 
