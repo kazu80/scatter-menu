@@ -6,8 +6,44 @@
             :host {
                 display : block;
             }
+
+            button {
+                padding          : 5px 20px;
+                border           : 1px solid #000000;
+                border-radius    : 7px;
+                background-color : #7d8b99;
+            }
+
+            .menu {
+                position   : relative;
+                width      : 100%;
+                height     : 500px;
+                background : rgba(255, 255, 255, .8);
+            }
+
+            .item {
+                position      : absolute;
+                top           : 10px;
+                left          : 10px;
+                width         : 50px;
+                height        : 50px;
+                border        : 1px solid #000000;
+                border-radius : 50%;
+                transition    : all 800ms ease;
+            }
+
+            .item.active {
+                left : calc(100% - 50px);
+            }
+
         </style>
-        <h2>Hello [[prop1]]!</h2>
+
+        <button id="btn">open / close</button>
+
+        <div class="menu">
+            <div id="item" class="item"></div>
+        </div>
+
     </template>
 
     <script>
@@ -24,11 +60,30 @@
 
             static get properties () {
                 return {
-                    prop1: {
-                        type : String,
-                        value: 'scatter-menu'
+                    isOpen: {
+                        type    : Boolean,
+                        value   : false,
+                        observer: '_isOpen'
                     }
                 };
+            }
+
+            ready () {
+                super.ready ();
+
+                this.$.btn.addEventListener ('click', () => {
+                    this.isOpen = true;
+                });
+            }
+
+            _isOpen (val, old) {
+                if (old === undefined) {
+                    return;
+                }
+
+                if (val) {
+                    this.$.item.classList.add ('active');
+                }
             }
         }
 
