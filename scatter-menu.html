@@ -1,0 +1,37 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="scatter-menu">
+    <template>
+        <style>
+            :host {
+                display : block;
+            }
+        </style>
+        <h2>Hello [[prop1]]!</h2>
+    </template>
+
+    <script>
+        /**
+         * `scatter-menu`
+         *
+         *
+         * @customElement
+         * @polymer
+         * @demo demo/index.html
+         */
+        class ScatterMenu extends Polymer.Element {
+            static get is () { return 'scatter-menu'; }
+
+            static get properties () {
+                return {
+                    prop1: {
+                        type : String,
+                        value: 'scatter-menu'
+                    }
+                };
+            }
+        }
+
+        window.customElements.define (ScatterMenu.is, ScatterMenu);
+    </script>
+</dom-module>
