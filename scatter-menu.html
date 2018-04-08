@@ -20,6 +20,7 @@
 
             .menu {
                 position   : relative;
+                margin     : 20px;
                 width      : 100%;
                 height     : 500px;
                 background : rgba(255, 255, 255, .8);
@@ -27,8 +28,8 @@
 
             .item {
                 position      : absolute;
-                top           : 10px;
-                left          : 10px;
+                top           : 0;
+                left          : 0;
                 width         : var(--item-size);
                 height        : var(--item-size);
                 border        : 1px solid #000000;
@@ -36,6 +37,9 @@
                 transition    : all 800ms ease;
             }
 
+            /**
+             * column 1
+             */
             .item.active01 {
                 left : calc(var(--menu-size) - (var(--item-size) * 1) - (var(--space-size) * 0));
             }
@@ -52,6 +56,29 @@
                 left : calc(var(--menu-size) - (var(--item-size) * 4) - (var(--space-size) * 3));
             }
 
+            /**
+             * column 2
+             */
+            .item.active05 {
+                top  : calc(var(--item-size) + (var(--space-size) * 1));
+                left : calc(var(--menu-size) - (var(--item-size) * 1) - (var(--space-size) * 0));
+            }
+
+            .item.active06 {
+                top  : calc(var(--item-size) + (var(--space-size) * 1));
+                left : calc(var(--menu-size) - (var(--item-size) * 2) - (var(--space-size) * 1));
+            }
+
+            .item.active07 {
+                top  : calc(var(--item-size) + (var(--space-size) * 1));
+                left : calc(var(--menu-size) - (var(--item-size) * 3) - (var(--space-size) * 2));
+            }
+
+            .item.active08 {
+                top  : calc(var(--item-size) + (var(--space-size) * 1));
+                left : calc(var(--menu-size) - (var(--item-size) * 4) - (var(--space-size) * 3));
+            }
+
         </style>
 
         <button id="btn">open / close</button>
@@ -61,6 +88,11 @@
             <div id="item02" class="item"></div>
             <div id="item03" class="item"></div>
             <div id="item04" class="item"></div>
+
+            <div id="item05" class="item"></div>
+            <div id="item06" class="item"></div>
+            <div id="item07" class="item"></div>
+            <div id="item08" class="item"></div>
         </div>
 
     </template>
@@ -112,6 +144,11 @@
                 this.$.item02.classList.add ('active02');
                 this.$.item03.classList.add ('active03');
                 this.$.item04.classList.add ('active04');
+
+                this.$.item05.classList.add ('active05');
+                this.$.item06.classList.add ('active06');
+                this.$.item07.classList.add ('active07');
+                this.$.item08.classList.add ('active08');
             }
 
             _back () {
@@ -119,6 +156,11 @@
                 this.$.item02.classList.remove ('active02');
                 this.$.item03.classList.remove ('active03');
                 this.$.item04.classList.remove ('active04');
+
+                this.$.item05.classList.remove ('active05');
+                this.$.item06.classList.remove ('active06');
+                this.$.item07.classList.remove ('active07');
+                this.$.item08.classList.remove ('active08');
             }
         }
 
