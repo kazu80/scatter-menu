@@ -1,6 +1,6 @@
 <link rel="import" href="../polymer/polymer-element.html">
 
-<dom-module id="scatter-menu">
+<dom-module id="scatter-menu-item">
     <template>
         <style>
             :host {
@@ -11,14 +11,15 @@
             }
 
             .item {
-                position      : absolute;
-                top           : 0;
-                left          : 0;
-                width         : var(--item-size);
-                height        : var(--item-size);
-                border        : 1px solid #000000;
-                border-radius : 50%;
-                transition    : all 800ms ease;
+                position         : absolute;
+                top              : 0;
+                left             : 0;
+                width            : var(--item-size);
+                height           : var(--item-size);
+                border           : 1px solid #000000;
+                border-radius    : 50%;
+                background-color : #f8c555;
+                transition       : all 800ms ease;
             }
 
             .item.active {
@@ -41,9 +42,13 @@
 
             static get properties () {
                 return {
-                    menuOrder: {
+                    menuOrder    : {
                         type    : Number,
                         observer: '_setOrder'
+                    },
+                    scatterActive: {
+                        type    : String,
+                        observer: '_active'
                     }
                 };
             }
@@ -54,6 +59,10 @@
 
             _setOrder (val, order) {
                 this.style.setProperty ('--menu-order', val);
+            }
+
+            _active (val, order) {
+                console.log (val);
             }
         }
 
