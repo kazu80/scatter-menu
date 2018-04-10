@@ -62,7 +62,14 @@
             }
 
             _active (val, order) {
-                console.log (val);
+                if (order === undefined) {
+                    return;
+                }
+                if (val === 'true') {
+                    this.$.item.classList.add ('active');
+                } else {
+                    this.$.item.classList.remove ('active');
+                }
             }
         }
 

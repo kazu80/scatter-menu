@@ -138,16 +138,18 @@
                             .assignedNodes ({flatten: true})
                             .filter (n => n.nodeName === 'SCATTER-MENU-ITEM');
 
-                    this._setMenus ();
+                    this._setMenus ((menu) => {
+                        menu.setAttribute ('scatter-active', 'false');
+                    });
                 });
             }
 
-            _setMenus () {
+            _setMenus (cb) {
                 for (let i = 0; i < this.menuElements.length; i++) {
                     const menu = this.menuElements[i];
 
-                    if (!menu.getAttribute ('scatter-active')) {
-                        menu.setAttribute ('scatter-active', 'false');
+                    if (typeof cb === 'function') {
+                        cb (menu);
                     }
                 }
             }
@@ -165,27 +167,15 @@
             }
 
             _active () {
-                this.$.item01.classList.add ('active01');
-                this.$.item02.classList.add ('active02');
-                this.$.item03.classList.add ('active03');
-                this.$.item04.classList.add ('active04');
-
-                this.$.item05.classList.add ('active05');
-                this.$.item06.classList.add ('active06');
-                this.$.item07.classList.add ('active07');
-                this.$.item08.classList.add ('active08');
+                this._setMenus ((menu) => {
+                    menu.scatterActive = 'true';
+                });
             }
 
             _back () {
-                this.$.item01.classList.remove ('active01');
-                this.$.item02.classList.remove ('active02');
-                this.$.item03.classList.remove ('active03');
-                this.$.item04.classList.remove ('active04');
-
-                this.$.item05.classList.remove ('active05');
-                this.$.item06.classList.remove ('active06');
-                this.$.item07.classList.remove ('active07');
-                this.$.item08.classList.remove ('active08');
+                this._setMenus ((menu) => {
+                    menu.scatterActive = 'false';
+                });
             }
         }
 
