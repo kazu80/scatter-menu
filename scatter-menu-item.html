@@ -4,10 +4,11 @@
     <template>
         <style>
             :host {
-                --menu-order : 1;
-                --menu-size  : 50%;
-                --item-size  : 50px;
-                --space-size : 20px;
+                --menu-order  : 1;
+                --menu-column : 0;
+                --menu-size   : 50%;
+                --item-size   : 50px;
+                --space-size  : 20px;
             }
 
             .item {
@@ -23,6 +24,7 @@
             }
 
             .item.active {
+                top  : calc(((var(--item-size) * var(--menu-column)) + (var(--space-size) * var(--menu-column))));
                 left : calc(var(--menu-size) - (var(--item-size) * var(--menu-order)) - (var(--space-size) * calc(var(--menu-order) - 1)));
             }
         </style>
@@ -46,6 +48,16 @@
                         type    : Number,
                         observer: '_setOrder'
                     },
+                    menuColumn   : {
+                        type    : Number,
+                        value   : 1,
+                        observer: '_setColumn'
+                    },
+                    menuSpace    : {
+                        type    : Number,
+                        value   : 20,
+                        observer: '_setSpace'
+                    },
                     scatterActive: {
                         type    : String,
                         observer: '_active'
@@ -59,6 +71,14 @@
 
             _setOrder (val, order) {
                 this.style.setProperty ('--menu-order', val);
+            }
+
+            _setColumn (val, order) {
+                this.style.setProperty ('--menu-column', val - 1);
+            }
+
+            _setSpace (val, order) {
+                this.style.setProperty ('--space-size', `${val}px`);
             }
 
             _active (val, order) {
