@@ -11,6 +11,11 @@
                 --space-size  : 20px;
             }
 
+            button:focus,
+            button:active {
+                outline : none;
+            }
+
             .item {
                 position         : absolute;
                 top              : 0;
@@ -20,13 +25,29 @@
                 border           : 1px solid #000000;
                 border-radius    : 50%;
                 background-color : #f8c555;
+                filter           : brightness(1.0);
                 transition       : all 800ms ease;
             }
 
             .item.active {
                 top  : calc(((var(--item-size) * var(--menu-column)) + (var(--space-size) * var(--menu-column))));
-                left : calc(var(--menu-size) - (var(--item-size) * calc(var(--menu-order) - 1)) - (var(--space-size) * calc(var(--menu-order) - 1)));
+                left : calc((var(--item-size) * (var(--menu-order) - 1)) + (var(--space-size) * (var(--menu-order) - 1)));
             }
+
+            .flash {
+                animation : flash 200ms ease;
+            }
+
+            @keyframes flash {
+                0%, 100% {
+                    filter : brightness(1.0);
+                }
+                50% {
+                    filter : brightness(1.5);
+                }
+            }
+
+
         </style>
         <button id="item" class="item"></button>
     </template>
@@ -67,6 +88,23 @@
 
             ready () {
                 super.ready ();
+
+                this._setEvent ();
+            }
+
+            _setEvent () {
+                this.$.item.addEventListener ('click', () => {
+                    // effect
+                    this.$.item.classList.add ('flash');
+                    this.$.item.addEventListener ('animationend', () => this.$.item.classList.remove ('flash'));
+
+                    //
+                    const id = this.$.item.getAttribute ('id');
+                    console.log (id);
+
+                    //
+                    this.dispatchEvent (new CustomEvent ('selected', {detail: {selected: this.selected}}));
+                });
             }
 
             _setOrder (val, order) {
