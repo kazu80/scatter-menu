@@ -25,7 +25,7 @@
 
             .item.active {
                 top  : calc(((var(--item-size) * var(--menu-column)) + (var(--space-size) * var(--menu-column))));
-                left : calc(var(--menu-size) - (var(--item-size) * var(--menu-order)) - (var(--space-size) * calc(var(--menu-order) - 1)));
+                left : calc(var(--menu-size) - (var(--item-size) * calc(var(--menu-order) - 1)) - (var(--space-size) * calc(var(--menu-order) - 1)));
             }
         </style>
         <button id="item" class="item"></button>
