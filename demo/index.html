@@ -33,7 +33,7 @@
                     --menu-size : 70%;
                 }
             </style>
-            <scatter-menu>
+            <scatter-menu id="menu">
                 <scatter-menu-item menu-order="1" menu-space="40"></scatter-menu-item>
                 <scatter-menu-item menu-order="2" menu-space="40"></scatter-menu-item>
                 <scatter-menu-item menu-order="3" menu-space="40"></scatter-menu-item>
@@ -51,6 +51,13 @@
                 <scatter-menu-item menu-order="3" menu-space="40" menu-column="4"></scatter-menu-item>
                 <scatter-menu-item menu-order="4" menu-space="40" menu-column="4"></scatter-menu-item>
             </scatter-menu>
+            <script>
+                const menu = document.getElementById ('menu');
+
+                menu.addEventListener ('menuSelected', (e) => {
+                    console.log (e.detail.selected);
+                });
+            </script>
 
         </template>
     </demo-snippet>

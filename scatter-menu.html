@@ -104,10 +104,14 @@
 
             static get properties () {
                 return {
-                    isOpen: {
+                    isOpen  : {
                         type    : Boolean,
                         value   : false,
                         observer: '_isOpen'
+                    },
+                    selected: {
+                        type  : Number,
+                        notify: true,
                     }
                 };
             }
@@ -128,7 +132,13 @@
 
                     this._setMenus ((menu, key) => {
                         menu.setAttribute ('scatter-active', 'false');
-                        menu.setAttribute ('id', key);
+                        menu.setAttribute ('name', key + 1);
+
+                        // menu close
+                        menu.addEventListener ('menuSelected', (e) => {
+                            this.selected = e.detail.selected;
+                            this.isOpen = false;
+                        });
                     });
                 });
             }
