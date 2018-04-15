@@ -28,11 +28,21 @@
     <demo-snippet>
         <template>
             <style>
+                button {
+                    padding          : 5px 20px;
+                    border           : 1px solid #000000;
+                    border-radius    : 7px;
+                    background-color : navy;
+                    color            : #ffffff;
+                }
+
                 scatter-menu-item {
                     --item-size : 60px;
                     --menu-size : 70%;
                 }
             </style>
+            <button id="btn">open / close</button>
+
             <scatter-menu id="menu">
                 <scatter-menu-item menu-order="1" menu-space="40"></scatter-menu-item>
                 <scatter-menu-item menu-order="2" menu-space="40"></scatter-menu-item>
@@ -53,6 +63,16 @@
             </scatter-menu>
             <script>
                 const menu = document.getElementById ('menu');
+                const btn = document.getElementById ('btn');
+
+                btn.addEventListener ('click', (e) => {
+                    if (menu.getAttribute ('is-open')) {
+                        menu.removeAttribute ('is-open');
+                    } else {
+                        menu.setAttribute ('is-open', true);
+                    }
+
+                });
 
                 menu.addEventListener ('menuSelected', (e) => {
                     console.log (e.detail.selected);
