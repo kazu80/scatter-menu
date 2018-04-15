@@ -31,6 +31,21 @@
             }
 
             /**
+             * Column 1
+             */
+            .item.column01 {
+                transition-delay : 0ms;
+            }
+
+            .item.column02 {
+                transition-delay : 1000ms;
+            }
+
+            .item.column03 {
+                transition-delay : 2000ms;
+            }
+
+            /**
              * column 1
              */
             .item.active01 {
@@ -102,7 +117,9 @@
                     selected: {
                         type  : Number,
                         notify: true,
-                    }
+                    },
+                    row     : {},
+                    col     : {},
                 };
             }
 
@@ -119,6 +136,12 @@
                     this._setMenus ((menu, key) => {
                         menu.setAttribute ('scatter-active', 'false');
                         menu.setAttribute ('name', key + 1);
+
+                        const row = (key + 1) % this.row === 0 ? Number (this.row) : (key + 1) % this.row;
+                        menu.setAttribute ('row', row);
+
+                        const col = Math.floor (key / (this.col)) + 1;
+                        menu.setAttribute ('col', col);
 
                         // menu close
                         menu.addEventListener ('menuSelected', (e) => {
