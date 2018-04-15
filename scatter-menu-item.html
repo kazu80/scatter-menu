@@ -6,9 +6,20 @@
             :host {
                 --menu-order  : 1;
                 --menu-column : 0;
-                --menu-size   : 50%;
                 --item-size   : 50px;
                 --space-size  : 20px;
+            }
+
+            .button-wrapper {
+                position   : absolute;
+                top        : calc(-1 * var(--item-size));
+                left       : calc(-2 * var(--item-size));
+                transition : all ease;
+            }
+
+            .button-wrapper.active {
+                top  : calc(((var(--item-size) * var(--menu-column)) + (var(--space-size) * var(--menu-column))));
+                left : calc((var(--item-size) * (var(--menu-order) - 1)) + (var(--space-size) * (var(--menu-order) - 1)));
             }
 
             button:focus,
@@ -17,21 +28,42 @@
             }
 
             .item {
-                position         : absolute;
-                top              : 0;
-                left             : 0;
                 width            : var(--item-size);
                 height           : var(--item-size);
                 border           : 1px solid #000000;
                 border-radius    : 50%;
                 background-color : #f8c555;
                 filter           : brightness(1.0);
-                transition       : all 800ms ease;
+                opacity          : .2;
+                transition       : all ease 400ms;
+            }
+
+            .col1 {
+                transition-delay : 0ms;
+            }
+
+            .col2 {
+                transition-delay : 50ms;
+            }
+
+            .col3 {
+                transition-delay : 100ms;
+            }
+
+            .row1 {
+                transition-duration : 700ms;
+            }
+
+            .row2 {
+                transition-duration : 750ms;
+            }
+
+            .row3 {
+                transition-duration : 800ms;
             }
 
             .item.active {
-                top  : calc(((var(--item-size) * var(--menu-column)) + (var(--space-size) * var(--menu-column))));
-                left : calc((var(--item-size) * (var(--menu-order) - 1)) + (var(--space-size) * (var(--menu-order) - 1)));
+                opacity : 1;
             }
 
             .flash {
@@ -47,9 +79,22 @@
                 }
             }
 
+            .title {
+                margin-top : 10px;
+                text-align : center;
+                font-size  : 20px;
+                opacity    : 0;
+                transition : all 200ms ease 1000ms;
+            }
 
+            .title.active {
+                opacity : 1;
+            }
         </style>
-        <button id="item" class="item"></button>
+        <div id="wrapper" class="button-wrapper">
+            <button id="item" class="item"></button>
+            <div id="title" class="title">[[menuTitle]]</div>
+        </div>
     </template>
     <script>
         /**
@@ -79,10 +124,17 @@
                         value   : 20,
                         observer: '_setSpace'
                     },
+                    menuTitle    : {},
                     scatterActive: {
                         type    : String,
                         observer: '_active'
-                    }
+                    },
+                    row          : {
+                        observer: '_row'
+                    },
+                    col          : {
+                        observer: '_col'
+                    },
                 };
             }
 
@@ -90,6 +142,14 @@
                 super.ready ();
 
                 this._setEvent ();
+            }
+
+            _row (row, old) {
+                this.$.wrapper.classList.add (`row${row}`);
+            }
+
+            _col (col, old) {
+                this.$.wrapper.classList.add (`col${col}`);
             }
 
             _setEvent () {
@@ -122,9 +182,13 @@
                     return;
                 }
                 if (val === 'true') {
+                    this.$.wrapper.classList.add ('active');
                     this.$.item.classList.add ('active');
+                    this.$.title.classList.add ('active');
                 } else {
+                    this.$.wrapper.classList.remove ('active');
                     this.$.item.classList.remove ('active');
+                    this.$.title.classList.remove ('active');
                 }
             }
         }

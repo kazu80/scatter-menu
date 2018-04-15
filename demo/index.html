@@ -28,6 +28,11 @@
     <demo-snippet>
         <template>
             <style>
+                .menu-wrapper {
+                    padding  : 20px;
+                    overflow : hidden;
+                }
+
                 button {
                     padding          : 5px 20px;
                     border           : 1px solid #000000;
@@ -36,26 +41,33 @@
                     color            : #ffffff;
                 }
 
+                scatter-menu {
+                    --menu-size   : 100%;
+                    --menu-height : 500px;
+                    --space-size  : 60px;
+                }
                 scatter-menu-item {
-                    --item-size : 60px;
-                    --menu-size : 70%;
+                    --item-size : 80px;
                 }
             </style>
             <button id="btn">open / close</button>
 
-            <scatter-menu id="menu" row="3" col="3">
-                <scatter-menu-item menu-order="1" menu-space="40"></scatter-menu-item>
-                <scatter-menu-item menu-order="2" menu-space="40"></scatter-menu-item>
-                <scatter-menu-item menu-order="3" menu-space="40"></scatter-menu-item>
+            <div class="menu-wrapper">
+                <scatter-menu id="menu" row="3" col="3">
+                    <scatter-menu-item menu-title="menu01" menu-order="1" menu-space="80"></scatter-menu-item>
+                    <scatter-menu-item menu-title="menu02" menu-order="2" menu-space="80"></scatter-menu-item>
+                    <scatter-menu-item menu-title="menu03" menu-order="3" menu-space="80"></scatter-menu-item>
 
-                <scatter-menu-item menu-order="1" menu-space="40" menu-column="2"></scatter-menu-item>
-                <scatter-menu-item menu-order="2" menu-space="40" menu-column="2"></scatter-menu-item>
-                <scatter-menu-item menu-order="3" menu-space="40" menu-column="2"></scatter-menu-item>
+                    <scatter-menu-item menu-title="menu04" menu-order="1" menu-space="80" menu-column="2"></scatter-menu-item>
+                    <scatter-menu-item menu-title="menu05" menu-order="2" menu-space="80" menu-column="2"></scatter-menu-item>
+                    <scatter-menu-item menu-title="menu06" menu-order="3" menu-space="80" menu-column="2"></scatter-menu-item>
 
-                <scatter-menu-item menu-order="1" menu-space="40" menu-column="3"></scatter-menu-item>
-                <scatter-menu-item menu-order="2" menu-space="40" menu-column="3"></scatter-menu-item>
-                <scatter-menu-item menu-order="3" menu-space="40" menu-column="3"></scatter-menu-item>
-            </scatter-menu>
+                    <scatter-menu-item menu-title="menu07" menu-order="1" menu-space="80" menu-column="3"></scatter-menu-item>
+                    <scatter-menu-item menu-title="menu08" menu-order="2" menu-space="80" menu-column="3"></scatter-menu-item>
+                    <scatter-menu-item menu-title="menu09" menu-order="3" menu-space="80" menu-column="3"></scatter-menu-item>
+                </scatter-menu>
+            </div>
+
             <script>
                 const menu = document.getElementById ('menu');
                 const btn = document.getElementById ('btn');
