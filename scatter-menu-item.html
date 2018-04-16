@@ -28,12 +28,15 @@
             }
 
             .item {
+                position         : relative;
+                padding          : 0;
                 width            : var(--item-size);
                 height           : var(--item-size);
                 border           : 1px solid #000000;
                 border-radius    : 50%;
                 background-color : #f8c555;
                 filter           : brightness(1.0);
+                box-sizing       : border-box;
                 opacity          : .2;
                 transition       : all ease 400ms;
             }
@@ -90,9 +93,29 @@
             .title.active {
                 opacity : 1;
             }
+
+            .circle01 {
+                position      : absolute;
+                top           : 50%;
+                left          : 50%;
+                width         : var(--item-size);
+                height        : var(--item-size);
+                border        : 1px solid #000000;
+                border-radius : 50%;
+                transform     : translate(-50%, -50%) scale(1);
+                box-sizing    : border-box;
+                transition    : transform 400ms ease-in-out;
+            }
+
+            .circle01.active {
+                transform : translate(-50%, -50%) scale(0.5);
+            }
+
         </style>
         <div id="wrapper" class="button-wrapper">
-            <button id="item" class="item"></button>
+            <button id="item" class="item">
+                <div id="circle01" class="circle01"></div>
+            </button>
             <div id="title" class="title">[[menuTitle]]</div>
         </div>
     </template>
@@ -163,13 +186,17 @@
                 //
                 this.$.item.addEventListener ('click', () => {
                     // effect
-                    this.$.item.classList.add ('flash');
-                    this.$.item.addEventListener ('animationend', () => this.$.item.classList.remove ('flash'));
+                    this.$.circle01.classList.add ('active');
+                    this.$.circle01.addEventListener ('transitionend', () => {
 
-                    //
-                    const id = this.getAttribute ('name');
-                    this.dispatchEvent (
-                        new CustomEvent ('menuSelected', {bubbles: true, composed: true, detail: {selected: id}}));
+                        this.$.item.classList.add ('flash');
+                        this.$.item.addEventListener ('animationend', () => this.$.item.classList.remove ('flash'));
+
+                        //
+                        const id = this.getAttribute ('name');
+                        this.dispatchEvent (
+                            new CustomEvent ('menuSelected', {bubbles: true, composed: true, detail: {selected: id}}));
+                    });
                 });
             }
 
@@ -197,6 +224,7 @@
                     this.$.wrapper.classList.remove ('active');
                     this.$.item.classList.remove ('active');
                     this.$.title.classList.remove ('active');
+                    this.$.circle01.classList.remove ('active');
                 }
             }
         }
