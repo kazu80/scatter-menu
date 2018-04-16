@@ -43,23 +43,23 @@
             }
 
             .col2 {
-                transition-delay : 50ms;
+                transition-delay : 150ms;
             }
 
             .col3 {
-                transition-delay : 100ms;
+                transition-delay : 300ms;
             }
 
             .row1 {
-                transition-duration : 700ms;
+                transition-duration : 500ms;
             }
 
             .row2 {
-                transition-duration : 750ms;
+                transition-duration : 600ms;
             }
 
             .row3 {
-                transition-duration : 800ms;
+                transition-duration : 700ms;
             }
 
             .item.active {
@@ -84,7 +84,7 @@
                 text-align : center;
                 font-size  : 20px;
                 opacity    : 0;
-                transition : all 200ms ease 1000ms;
+                transition : opacity 100ms ease-in;
             }
 
             .title.active {
@@ -153,6 +153,14 @@
             }
 
             _setEvent () {
+                //
+                this.$.wrapper.addEventListener ('transitionend', (event) => {
+                    if (event.propertyName === 'left' && this.$.item.classList.contains ('active')) {
+                        this.$.title.classList.add ('active');
+                    }
+                });
+
+                //
                 this.$.item.addEventListener ('click', () => {
                     // effect
                     this.$.item.classList.add ('flash');
@@ -184,7 +192,7 @@
                 if (val === 'true') {
                     this.$.wrapper.classList.add ('active');
                     this.$.item.classList.add ('active');
-                    this.$.title.classList.add ('active');
+
                 } else {
                     this.$.wrapper.classList.remove ('active');
                     this.$.item.classList.remove ('active');
