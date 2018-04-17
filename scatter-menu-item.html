@@ -4,10 +4,13 @@
     <template>
         <style>
             :host {
-                --menu-order  : 1;
-                --menu-column : 0;
-                --item-size   : 50px;
-                --space-size  : 20px;
+                --menu-order       : 1;
+                --menu-column      : 0;
+                --item-size        : 50px;
+                --menu-image       : '';
+                --menu-border      : none;
+                --menu-title-color : #000000;
+                --menu-title-size  : 4vw;
             }
 
             .button-wrapper {
@@ -32,13 +35,15 @@
                 padding          : 0;
                 width            : var(--item-size);
                 height           : var(--item-size);
-                border           : 1px solid #000000;
+                border           : var(--menu-border);
                 border-radius    : 50%;
-                background-color : #f8c555;
                 filter           : brightness(1.0);
                 box-sizing       : border-box;
                 opacity          : .2;
                 transition       : all ease 400ms;
+                background-image : var(--menu-image);
+                background-repeat : no-repeat;
+                background-size : cover;
             }
 
             .col1 {
@@ -83,10 +88,11 @@
             }
 
             .title {
-                margin-top : 10px;
+                margin-top : 2.666666667vw;
                 text-align : center;
-                font-size  : 20px;
+                font-size  : var(--menu-title-size);
                 opacity    : 0;
+                color      : var(--menu-title-color);
                 transition : opacity 100ms ease-in;
             }
 
@@ -209,7 +215,7 @@
             }
 
             _setSpace (val, order) {
-                this.style.setProperty ('--space-size', `${val}px`);
+                // this.style.setProperty ('--space-size', `${val}px`);
             }
 
             _active (val, order) {
