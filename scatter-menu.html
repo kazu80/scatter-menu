@@ -16,75 +16,6 @@
                 width    : var(--menu-size);
                 height   : var(--menu-height);
             }
-
-            .item {
-                position      : absolute;
-                top           : 0;
-                left          : 0;
-                width         : var(--item-size);
-                height        : var(--item-size);
-                border        : 1px solid #000000;
-                border-radius : 50%;
-                transition    : all 800ms ease;
-            }
-
-            /**
-             * Column 1
-             */
-            .item.column01 {
-                transition-delay : 0ms;
-            }
-
-            .item.column02 {
-                transition-delay : 1000ms;
-            }
-
-            .item.column03 {
-                transition-delay : 2000ms;
-            }
-
-            /**
-             * column 1
-             */
-            .item.active01 {
-                left : calc(var(--menu-size) - (var(--item-size) * 1) - (var(--space-size) * 0));
-            }
-
-            .item.active02 {
-                left : calc(var(--menu-size) - (var(--item-size) * 2) - (var(--space-size) * 1));
-            }
-
-            .item.active03 {
-                left : calc(var(--menu-size) - (var(--item-size) * 3) - (var(--space-size) * 2));
-            }
-
-            .item.active04 {
-                left : calc(var(--menu-size) - (var(--item-size) * 4) - (var(--space-size) * 3));
-            }
-
-            /**
-             * column 2
-             */
-            .item.active05 {
-                top  : calc(var(--item-size) + (var(--space-size) * 1));
-                left : calc(var(--menu-size) - (var(--item-size) * 1) - (var(--space-size) * 0));
-            }
-
-            .item.active06 {
-                top  : calc(var(--item-size) + (var(--space-size) * 1));
-                left : calc(var(--menu-size) - (var(--item-size) * 2) - (var(--space-size) * 1));
-            }
-
-            .item.active07 {
-                top  : calc(var(--item-size) + (var(--space-size) * 1));
-                left : calc(var(--menu-size) - (var(--item-size) * 3) - (var(--space-size) * 2));
-            }
-
-            .item.active08 {
-                top  : calc(var(--item-size) + (var(--space-size) * 1));
-                left : calc(var(--menu-size) - (var(--item-size) * 4) - (var(--space-size) * 3));
-            }
-
         </style>
 
         <div class="menu">
@@ -108,9 +39,11 @@
             static get properties () {
                 return {
                     isOpen  : {
-                        type    : Boolean,
-                        value   : false,
-                        observer: '_isOpen'
+                        type              : Boolean,
+                        value             : false,
+                        notify            : true,
+                        reflectToAttribute: true,
+                        observer          : '_isOpen'
                     },
                     selected: {
                         type  : Number,

@@ -4,13 +4,14 @@
     <template>
         <style>
             :host {
-                --menu-order       : 1;
-                --menu-column      : 0;
-                --item-size        : 50px;
-                --menu-image       : '';
-                --menu-border      : none;
-                --menu-title-color : #000000;
-                --menu-title-size  : 4vw;
+                --menu-order        : 1;
+                --menu-column       : 0;
+                --item-size         : 50px;
+                --menu-image        : '';
+                --menu-border       : none;
+                --menu-title-color  : #000000;
+                --menu-title-size   : 4vw;
+                --space-size-bottom : 6.133333333vw;
             }
 
             .button-wrapper {
@@ -21,7 +22,7 @@
             }
 
             .button-wrapper.active {
-                top  : calc(((var(--item-size) * var(--menu-column)) + (var(--space-size) * var(--menu-column))));
+                top  : calc(((var(--item-size) * var(--menu-column)) + (var(--space-size) * var(--menu-column))) + (var(--space-size-bottom) * var(--menu-column)));
                 left : calc((var(--item-size) * (var(--menu-order) - 1)) + (var(--space-size) * (var(--menu-order) - 1)));
             }
 
