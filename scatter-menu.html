@@ -116,6 +116,25 @@
                     menu.scatterActive = 'false';
                 });
             }
+
+            /**
+             * method: _selected([menu name])
+             *
+             * @param name
+             * @private
+             */
+            _selected (name) {
+                this._setMenus ((menu) => {
+                    if (menu.scatterActive === 'false') {
+                        this.isOpen = true;
+                    }
+
+                    if (Number (menu.getAttribute ('name')) === name) {
+                        menu.setAttribute ('menu-selected', true);
+                    }
+                });
+
+            }
         }
 
         window.customElements.define (ScatterMenu.is, ScatterMenu);

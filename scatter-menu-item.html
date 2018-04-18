@@ -176,6 +176,7 @@
                         observer: '_setSpace'
                     },
                     menuTitle    : {},
+                    menuSelected : {},
                     scatterActive: {
                         type    : String,
                         observer: '_active'
@@ -206,6 +207,15 @@
             _setEvent () {
                 //
                 this.$.wrapper.addEventListener ('transitionend', (event) => {
+
+                    if (event.propertyName === 'left' && this.menuSelected === 'true') {
+                        this.menuSelected = undefined;
+
+                        setTimeout (() => {
+                            this.$.item.click ();
+                        }, 1000);
+                    }
+
                     if (event.propertyName === 'left' && this.$.item.classList.contains ('active')) {
                         this.$.title.classList.add ('active');
                     }
