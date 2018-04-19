@@ -12,6 +12,7 @@
                 --menu-title-color  : #000000;
                 --menu-title-size   : 4vw;
                 --space-size-bottom : 6.133333333vw;
+                --trandition-delay  : 100ms;
             }
 
             .button-wrapper {
@@ -52,11 +53,11 @@
             }
 
             .col2 {
-                transition-delay : 150ms;
+                transition-delay : calc(var(--trandition-delay) / 2);
             }
 
             .col3 {
-                transition-delay : 300ms;
+                transition-delay : var(--trandition-delay);
             }
 
             .row1 {
