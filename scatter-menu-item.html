@@ -4,15 +4,17 @@
     <template>
         <style>
             :host {
-                --menu-order        : 1;
-                --menu-column       : 0;
-                --item-size         : 50px;
-                --menu-image        : '';
-                --menu-border       : none;
-                --menu-title-color  : #000000;
-                --menu-title-size   : 4vw;
-                --space-size-bottom : 6.133333333vw;
-                --trandition-delay  : 100ms;
+                --menu-order                : 1;
+                --menu-column               : 0;
+                --item-size                 : 50px;
+                --menu-image                : '';
+                --menu-border               : none;
+                --menu-title-color          : #000000;
+                --menu-title-size           : 4vw;
+                --space-size-bottom         : 6.133333333vw;
+                --trandition-delay          : 100ms;
+                --trandition-duration       : 100ms;
+                --trandition-duration-start : 300ms;
             }
 
             .button-wrapper {
@@ -61,15 +63,15 @@
             }
 
             .row1 {
-                transition-duration : 500ms;
+                transition-duration : var(--trandition-duration-start);
             }
 
             .row2 {
-                transition-duration : 600ms;
+                transition-duration : calc(var(--trandition-duration-start) + var(--trandition-duration));
             }
 
             .row3 {
-                transition-duration : 700ms;
+                transition-duration : calc(var(--trandition-duration-start) + (var(--trandition-duration) * 2));
             }
 
             .item.active {
