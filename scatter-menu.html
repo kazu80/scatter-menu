@@ -74,6 +74,11 @@
                         const col = Math.floor (key / (this.col)) + 1;
                         menu.setAttribute ('col', col);
 
+                        // set css variables
+                        menu.style.setProperty ('--trandition-delay', '100ms');
+                        menu.style.setProperty ('--trandition-duration', '100ms');
+                        menu.style.setProperty ('--trandition-duration-start', '300ms');
+
                         // menu close
                         menu.addEventListener ('menuSelected', (e) => {
                             this.selected = e.detail.selected;
