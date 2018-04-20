@@ -12,9 +12,9 @@
                 --menu-title-color          : #000000;
                 --menu-title-size           : 4vw;
                 --space-size-bottom         : 6.133333333vw;
-                --trandition-delay          : 100ms;
-                --trandition-duration       : 100ms;
-                --trandition-duration-start : 300ms;
+                --transition-delay          : 100ms;
+                --transition-duration       : 100ms;
+                --transition-duration-start : 300ms;
             }
 
             .button-wrapper {
@@ -55,23 +55,23 @@
             }
 
             .col2 {
-                transition-delay : calc(var(--trandition-delay) / 2);
+                transition-delay : calc(var(--transition-delay) / 2);
             }
 
             .col3 {
-                transition-delay : var(--trandition-delay);
+                transition-delay : var(--transition-delay);
             }
 
             .row1 {
-                transition-duration : var(--trandition-duration-start);
+                transition-duration : var(--transition-duration-start);
             }
 
             .row2 {
-                transition-duration : calc(var(--trandition-duration-start) + var(--trandition-duration));
+                transition-duration : calc(var(--transition-duration-start) + var(--transition-duration));
             }
 
             .row3 {
-                transition-duration : calc(var(--trandition-duration-start) + (var(--trandition-duration) * 2));
+                transition-duration : calc(var(--transition-duration-start) + (var(--transition-duration) * 2));
             }
 
             .item.active {

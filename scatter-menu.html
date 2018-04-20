@@ -9,6 +9,15 @@
                 --menu-size   : 50%;
                 --menu-height : 500px;
                 --item-size   : 50px;
+
+                /**
+                 * --transition-delay: delay of last col's menu. other col's menu delay is half to it.
+                 * --transition-duration: duration of between row's menu.
+                 * --transition-duration-start: duration of row's menu.
+                 */
+                --transition-delay : 100ms;
+                --transition-duration : 100ms;
+                --transition-duration-start : 300ms;
             }
 
             .menu {
@@ -75,9 +84,15 @@
                         menu.setAttribute ('col', col);
 
                         // set css variables
-                        menu.style.setProperty ('--trandition-delay', '100ms');
-                        menu.style.setProperty ('--trandition-duration', '100ms');
-                        menu.style.setProperty ('--trandition-duration-start', '300ms');
+                        menu.style.setProperty ('--transition-delay',
+                                                window.getComputedStyle (this, null).getPropertyValue (
+                                                    '--transition-delay'));
+                        menu.style.setProperty ('--transition-duration',
+                                                window.getComputedStyle (this, null).getPropertyValue (
+                                                    '--transition-duration'));
+                        menu.style.setProperty ('--transition-duration-start',
+                                                window.getComputedStyle (this, null).getPropertyValue (
+                                                    '--transition-duration-start'));
 
                         // menu close
                         menu.addEventListener ('menuSelected', (e) => {
