@@ -171,6 +171,11 @@
                         type    : String,
                         observer: '_active'
                     },
+                    titleVisible : {
+                        reflectToAttribute: true,
+                        notify            : true,
+                        observer          : '_titleVisible'
+                    },
                     row          : {
                         observer: '_row'
                     },
@@ -206,8 +211,14 @@
                         }, 1000);
                     }
 
-                    if (event.propertyName === 'left' && this.$.item.classList.contains ('active')) {
-                        this.$.title.classList.add ('active');
+                    // closed menu
+                    if (event.propertyName === 'left' && this.$.wrapper.classList.contains ('active') === false) {
+                        this.titleVisible = true;
+                    }
+
+                    // open menu
+                    if (event.propertyName === 'left' && this.$.item.classList.contains ('active') === true) {
+                        // this.$.title.classList.add ('active');
                     }
                 });
 
@@ -224,9 +235,16 @@
                         this.$.circle02.classList.remove ('active');
                     });
 
+                    // id
+                    const id = this.getAttribute ('name');
+
+                    // menu clicked
+                    this.dispatchEvent (
+                        new CustomEvent ('menuClicked', {bubbles: true, composed: true, detail: {selected: id}})
+                    );
+
                     //
                     setTimeout (() => {
-                        const id = this.getAttribute ('name');
                         this.dispatchEvent (
                             new CustomEvent ('menuSelected', {bubbles: true, composed: true, detail: {selected: id}}));
                     }, 800);
@@ -256,9 +274,19 @@
                 } else {
                     this.$.wrapper.classList.remove ('active');
                     this.$.item.classList.remove ('active');
-                    this.$.title.classList.remove ('active');
+                    // this.$.title.classList.remove ('active');
                     this.$.circle01.classList.remove ('active');
                 }
+            }
+
+            _titleVisible (val, old) {
+                /*
+                if (val === 'false') {
+                    this.$.title.classList.remove ('active');
+                } else {
+                    this.$.title.classList.add ('active');
+                }
+                */
             }
         }
 
