@@ -18,15 +18,20 @@
             }
 
             .button-wrapper {
-                position   : absolute;
-                top        : calc(-1 * var(--item-size));
-                left       : calc(-2 * var(--item-size));
-                transition : all ease;
+                display        : flex;
+                flex-direction : column;
+                align-items    : center;
+                position       : absolute;
+                top            : calc(-1 * var(--item-size));
+                left           : calc(-2 * var(--item-size));
+                transition     : all ease-in-out;
+                transform      : scale(0);
             }
 
             .button-wrapper.active {
-                top  : calc(((var(--item-size) * var(--menu-column)) + (var(--space-size) * var(--menu-column))) + (var(--space-size-bottom) * var(--menu-column)));
-                left : calc((var(--item-size) * (var(--menu-order) - 1)) + (var(--space-size) * (var(--menu-order) - 1)));
+                top       : calc(((var(--item-size) * var(--menu-column)) + (var(--space-size) * var(--menu-column))) + (var(--space-size-bottom) * var(--menu-column)));
+                left      : calc((var(--item-size) * (var(--menu-order) - 1)) + (var(--space-size) * (var(--menu-order) - 1)));
+                transform : scale(1);
             }
 
             button:focus,
@@ -35,19 +40,20 @@
             }
 
             .item {
-                position         : relative;
-                padding          : 0;
-                width            : var(--item-size);
-                height           : var(--item-size);
-                border           : var(--menu-border);
-                border-radius    : 50%;
-                filter           : brightness(1.0);
-                box-sizing       : border-box;
-                opacity          : .2;
-                transition       : all ease 400ms;
-                background-image : var(--menu-image);
+                position          : relative;
+                padding           : 0;
+                width             : var(--item-size);
+                height            : var(--item-size);
+                border            : var(--menu-border);
+                border-radius     : 50%;
+                filter            : brightness(1.0);
+                box-sizing        : border-box;
+                opacity           : .2;
+                transition        : all ease 400ms;
+                background-color  : #f8c555;
+                background-image  : var(--menu-image);
                 background-repeat : no-repeat;
-                background-size : cover;
+                background-size   : cover;
             }
 
             .col1 {
@@ -213,12 +219,12 @@
 
                     // closed menu
                     if (event.propertyName === 'left' && this.$.wrapper.classList.contains ('active') === false) {
-                        this.titleVisible = true;
+                        this.titleVisible = false;
                     }
 
                     // open menu
                     if (event.propertyName === 'left' && this.$.item.classList.contains ('active') === true) {
-                        // this.$.title.classList.add ('active');
+                        this.titleVisible = true;
                     }
                 });
 
@@ -280,13 +286,11 @@
             }
 
             _titleVisible (val, old) {
-                /*
-                if (val === 'false') {
+                if (val === 'false' || val === false) {
                     this.$.title.classList.remove ('active');
                 } else {
                     this.$.title.classList.add ('active');
                 }
-                */
             }
         }
 

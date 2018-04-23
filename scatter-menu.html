@@ -94,13 +94,11 @@
                                                 window.getComputedStyle (this, null).getPropertyValue (
                                                     '--transition-duration-start'));
 
-                        menu.setAttribute ('title-visible', true);
-
                         // menu click
                         menu.addEventListener ('menuClicked', (e) => {
                             // disable title
                             this._setMenus ((menu, key) => {
-                                if (key + 1 !== Number (this.selected)) {
+                                if (key + 1 !== Number (e.detail.selected)) {
                                     menu.setAttribute ('title-visible', false);
                                 }
                             });
