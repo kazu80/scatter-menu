@@ -8,7 +8,7 @@
                 --menu-column               : 0;
                 --item-size                 : 50px;
                 --menu-image                : '';
-                --menu-border               : none;
+                --menu-border               : 1px solid #ffffff;
                 --menu-title-color          : #000000;
                 --menu-title-size           : 4vw;
                 --space-size-bottom         : 6.133333333vw;
@@ -103,15 +103,25 @@
                 left          : 50%;
                 width         : var(--item-size);
                 height        : var(--item-size);
-                border        : 1px solid #000000;
                 border-radius : 50%;
                 transform     : translate(-50%, -50%) scale(1);
                 box-sizing    : border-box;
-                transition    : transform 200ms ease-in-out;
             }
 
             .circle01.active {
-                transform : translate(-50%, -50%) scale(.3);
+                animation : line 600ms ease-in-out;
+            }
+
+            @keyframes line {
+                0% {
+                    border    : 1px solid #ffffff;
+                    transform : translate(-50%, -50%) scale(1);
+                }
+
+                100% {
+                    border    : 1px solid #ffffff;
+                    transform : translate(-50%, -50%) scale(.8);
+                }
             }
 
             .circle02 {
@@ -123,15 +133,24 @@
                 border-radius    : 50%;
                 transform        : translate(-50%, -50%) scale(0);
                 box-sizing       : border-box;
-                opacity          : 1;
-                filter           : brightness(200%);
-                background-color : rgba(255, 255, 255, .8);
+                background-color : rgba(255, 255, 255, .1);
                 transition       : all 180ms ease-in-out;
             }
 
             .circle02.active {
-                opacity   : 1;
-                transform : translate(-50%, -50%) scale(0.95);
+                animation : brightness 600ms ease;
+            }
+
+            @keyframes brightness {
+                0% {
+                    filter    : brightness(0%);
+                    transform : translate(-50%, -50%) scale(0);
+                }
+
+                100% {
+                    filter    : brightness(200%);
+                    transform : translate(-50%, -50%) scale(.9);
+                }
             }
 
         </style>
@@ -232,12 +251,12 @@
                 this.$.item.addEventListener ('click', () => {
                     // effect
                     this.$.circle01.classList.add ('active');
-                    this.$.circle01.addEventListener ('transitionend', () => {
+                    this.$.circle01.addEventListener ('animationend', () => {
                         this.$.circle01.classList.remove ('active');
                     });
 
                     this.$.circle02.classList.add ('active');
-                    this.$.circle02.addEventListener ('transitionend', () => {
+                    this.$.circle02.addEventListener ('animationend', () => {
                         this.$.circle02.classList.remove ('active');
                     });
 
