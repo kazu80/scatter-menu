@@ -66,6 +66,10 @@
             ready () {
                 super.ready ();
 
+                const delay = window.getComputedStyle (this, null).getPropertyValue ('--transition-delay');
+                const duration = window.getComputedStyle (this, null).getPropertyValue ('--transition-duration');
+                const start = window.getComputedStyle (this, null).getPropertyValue ('--transition-duration-start');
+
                 new Polymer.FlattenedNodesObserver (this.shadowRoot.querySelector ('slot'), (info) => {
                     this.menuElements =
                         this.shadowRoot
@@ -84,15 +88,9 @@
                         menu.setAttribute ('col', col);
 
                         // set css variables
-                        menu.style.setProperty ('--transition-delay',
-                                                window.getComputedStyle (this, null).getPropertyValue (
-                                                    '--transition-delay'));
-                        menu.style.setProperty ('--transition-duration',
-                                                window.getComputedStyle (this, null).getPropertyValue (
-                                                    '--transition-duration'));
-                        menu.style.setProperty ('--transition-duration-start',
-                                                window.getComputedStyle (this, null).getPropertyValue (
-                                                    '--transition-duration-start'));
+                        menu.style.setProperty ('--transition-delay', delay);
+                        menu.style.setProperty ('--transition-duration', duration);
+                        menu.style.setProperty ('--transition-duration-start', start);
 
                         // menu click
                         menu.addEventListener ('menuClicked', (e) => {

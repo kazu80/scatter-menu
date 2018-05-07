@@ -48,12 +48,16 @@
                 border-radius     : 50%;
                 filter            : brightness(1.0);
                 box-sizing        : border-box;
-                opacity           : .2;
+                opacity           : 1;
                 transition        : all ease 400ms;
                 background-color  : #f8c555;
                 background-image  : var(--menu-image);
                 background-repeat : no-repeat;
                 background-size   : cover;
+            }
+
+            .item.active {
+                opacity : 1;
             }
 
             .col1 {
@@ -78,10 +82,6 @@
 
             .row3 {
                 transition-duration : calc(var(--transition-duration-start) + (var(--transition-duration) * 2));
-            }
-
-            .item.active {
-                opacity : 1;
             }
 
             .title {
@@ -294,11 +294,12 @@
                 }
                 if (val === 'true') {
                     this.$.wrapper.classList.add ('active');
-                    this.$.item.classList.add ('active');
+                    // itemにactiveをつけると暴走する（safari）
+                    // this.$.item.classList.add ('active');
 
                 } else {
                     this.$.wrapper.classList.remove ('active');
-                    this.$.item.classList.remove ('active');
+                    // this.$.item.classList.remove ('active');
                     // this.$.title.classList.remove ('active');
                     this.$.circle01.classList.remove ('active');
                 }
