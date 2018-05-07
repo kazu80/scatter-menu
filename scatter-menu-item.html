@@ -52,7 +52,6 @@
                 box-sizing        : border-box;
                 transition        : all ease 400ms;
                 background-color  : #f8c555;
-                background-image  : var(--menu-image);
                 background-repeat : no-repeat;
                 background-size   : cover;
             }
@@ -173,16 +172,17 @@
 
             static get properties () {
                 return {
-                    menuOrder    : {
+                    menuImage   : String,
+                    menuOrder   : {
                         type    : Number,
                         observer: '_setOrder'
                     },
-                    menuColumn   : {
+                    menuColumn  : {
                         type    : Number,
                         value   : 1,
                         observer: '_setColumn'
                     },
-                    menuSpace    : {
+                    menuSpace   : {
                         type    : Number,
                         value   : 20,
                         observer: '_setSpace'
@@ -193,15 +193,15 @@
                         type    : String,
                         observer: '_active'
                     },
-                    titleVisible : {
+                    titleVisible: {
                         reflectToAttribute: true,
                         notify            : true,
                         observer          : '_titleVisible'
                     },
-                    row          : {
+                    row         : {
                         observer: '_row'
                     },
-                    col          : {
+                    col         : {
                         observer: '_col'
                     },
                 };
@@ -211,6 +211,10 @@
                 super.ready ();
 
                 this._setEvent ();
+
+                if (this.menuImage) {
+                    this.$.item.style.backgroundImage = `url(${this.menuImage})`;
+                }
             }
 
             _row (row, old) {
