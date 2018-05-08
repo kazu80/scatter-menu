@@ -4,9 +4,11 @@
     <template>
         <style>
             :host {
+                --item-size                 : 50px;
+                --menu-position-x           : calc(-2 * var(--item-size));
+                --menu-position-y           : calc(-1 * var(--item-size));
                 --menu-order                : 1;
                 --menu-column               : 0;
-                --item-size                 : 50px;
                 --menu-image                : '';
                 --menu-border               : 1px solid #ffffff;
                 --menu-title-color          : #000000;
@@ -22,8 +24,8 @@
                 flex-direction : column;
                 align-items    : center;
                 position       : absolute;
-                top            : calc(-1 * var(--item-size));
-                left           : calc(-2 * var(--item-size));
+                top            : var(--menu-position-y);
+                left           : var(--menu-position-x);
                 transition     : all ease-in-out;
                 transform      : scale(0);
                 opacity        : .2;
