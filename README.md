@@ -1,4 +1,21 @@
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/monkick/scatter-menu)
+
 # \<scatter-menu\>
+
+This is menu.
+
+## Version
+1.0
+
+## DEMO
+
+Look at page of demo
+
+## Installation
+
+```
+$ bower install --save monkick/scatter-menu
+```
 
 
 
