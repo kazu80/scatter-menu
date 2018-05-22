@@ -106,6 +106,15 @@
                         menu.addEventListener ('menuSelected', (e) => {
                             this.selected = e.detail.selected;
                             this.isOpen = false;
+
+                            // Add selected class
+                            this._setMenus ((menu) => {
+                                if (menu.getAttribute ('name') === this.selected) {
+                                    menu.shadowRoot.querySelector ('#item').classList.add ('selected');
+                                } else {
+                                    menu.shadowRoot.querySelector ('#item').classList.remove ('selected');
+                                }
+                            });
                         });
                     });
                 });

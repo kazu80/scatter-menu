@@ -4,15 +4,17 @@
     <template>
         <style>
             :host {
-                --item-size                 : 50px;
-                --menu-position-x           : calc(-2 * var(--item-size));
-                --menu-position-y           : calc(-1 * var(--item-size));
-                --menu-order                : 1;
-                --menu-column               : 0;
-                --menu-image                : '';
-                --menu-border               : 1px solid #ffffff;
-                --menu-title-color          : #000000;
-                --menu-title-size           : 4vw;
+                                   --item-selected: {
+                                   };
+                --item-size        : 50px;
+                --menu-position-x  : calc(-2 * var(--item-size));
+                --menu-position-y  : calc(-1 * var(--item-size));
+                --menu-order       : 1;
+                --menu-column      : 0;
+                --menu-image       : '';
+                --menu-border      : 1px solid #ffffff;
+                --menu-title-color : #000000;
+                --menu-title-size  : 4vw;
                 --space-size-bottom         : 6.133333333vw;
                 --transition-delay          : 100ms;
                 --transition-duration       : 100ms;
@@ -58,6 +60,10 @@
                 background-color  : #888888;
                 background-repeat : no-repeat;
                 background-size   : cover;
+            }
+
+            .item.selected {
+                @apply --item-selected;
             }
 
             .col1 {
