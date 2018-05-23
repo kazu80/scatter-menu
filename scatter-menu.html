@@ -55,8 +55,10 @@
                         observer          : '_isOpen'
                     },
                     selected: {
-                        type  : Number,
-                        notify: true,
+                        type              : Number,
+                        notify            : true,
+                        reflectToAttribute: true,
+                        observer          : '_menuSelected'
                     },
                     row     : {},
                     col     : {},
@@ -106,15 +108,6 @@
                         menu.addEventListener ('menuSelected', (e) => {
                             this.selected = e.detail.selected;
                             this.isOpen = false;
-
-                            // Add selected class
-                            this._setMenus ((menu) => {
-                                if (menu.getAttribute ('name') === this.selected) {
-                                    menu.shadowRoot.querySelector ('#item').classList.add ('selected');
-                                } else {
-                                    menu.shadowRoot.querySelector ('#item').classList.remove ('selected');
-                                }
-                            });
                         });
                     });
                 });
@@ -128,6 +121,16 @@
                         cb (menu, i);
                     }
                 }
+            }
+
+            _menuSelected (selected, old) {
+                this._setMenus ((menu) => {
+                    if (menu.getAttribute ('name') === selected) {
+                        menu.shadowRoot.querySelector ('#item').classList.add ('selected');
+                    } else {
+                        menu.shadowRoot.querySelector ('#item').classList.remove ('selected');
+                    }
+                });
             }
 
             _isOpen (val, old) {
