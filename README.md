@@ -29,7 +29,7 @@ At first. Import it at header.
 Next. Add the `scatter-menu` custom tag and put some `scatter-menu-item` in `scatter-menu`.
 
 ```html
-    <scatter-menu id="menu" row="3" col="3">
+    <scatter-menu row="3" col="3">
         <scatter-menu-item menu-title="menu01" menu-order="1" menu-space="80"></scatter-menu-item>
         <scatter-menu-item menu-title="menu02" menu-order="2" menu-space="80"></scatter-menu-item>
         <scatter-menu-item menu-title="menu03" menu-order="3" menu-space="80"></scatter-menu-item>
@@ -42,6 +42,17 @@ Next. Add the `scatter-menu` custom tag and put some `scatter-menu-item` in `sca
     </scatter-menu>
 ```
 
+### <scatter-menu>
+
+* row: Row number of menu.
+* col: Column number of menu.
+
+### <scatter-menu-item>
+
+* menu-title: Title of menu.
+* menu-order: Order of menu in row.
+* menu-space:
+* menu-column: Column of menu.
 
 ## Install the Polymer-CLI
 
