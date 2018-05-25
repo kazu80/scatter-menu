@@ -51,7 +51,7 @@ Next. Add the `scatter-menu` custom tag and put some `scatter-menu-item` in `sca
 
 * menu-title: Title of menu.
 * menu-order: Order of menu in row.
-* menu-space:
+* menu-space: Space of menu.
 * menu-column: Column of menu.
 
 ## Install the Polymer-CLI
