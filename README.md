@@ -42,6 +42,8 @@ Next. Add the `scatter-menu` custom tag and put some `scatter-menu-item` in `sca
     </scatter-menu>
 ```
 
+## Parameter
+
 ### <scatter-menu>
 
 * row: Row number of menu.
@@ -60,4 +62,10 @@ Next. Add the `scatter-menu` custom tag and put some `scatter-menu-item` in `sca
 ### <scatter-menu-item>
 
 * menuClicked: fire event when menu clicked.
+
+## METHOD
+
+### <scatter-menu>
+
+* _selected: Item be selected
 
