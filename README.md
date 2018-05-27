@@ -46,6 +46,7 @@ Next. Add the `scatter-menu` custom tag and put some `scatter-menu-item` in `sca
 
 * row: Row number of menu.
 * col: Column number of menu.
+* selected: selected item number.
 
 ### <scatter-menu-item>
 
@@ -54,20 +55,9 @@ Next. Add the `scatter-menu` custom tag and put some `scatter-menu-item` in `sca
 * menu-space: Space of menu.
 * menu-column: Column of menu.
 
-## Install the Polymer-CLI
+## EVENT
 
-First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) installed. Then run `polymer serve` to serve your element locally.
+### <scatter-menu-item>
 
-## Viewing Your Element
+* menuClicked: fire event when menu clicked.
 
-```
-$ polymer serve
-```
-
-## Running Tests
-
-```
-$ polymer test
-```
-
-Your application is already set up to be tested via [web-component-tester](https://github.com/Polymer/web-component-tester). Run `polymer test` to run your application's test suite locally.
