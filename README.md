@@ -2,14 +2,14 @@
 
 # \<scatter-menu\>
 
-This is menu.
+This is menu for mobile.
 
 ## Version
-1.0
+1.0.0
 
 ## DEMO
 
-Look at page of demo
+Look at page of demo.
 
 ## Installation
 
