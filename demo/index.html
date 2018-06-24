@@ -52,8 +52,7 @@
                     --item-size       : 80px;
                 }
             </style>
-            <button id="btn">foo</button>
-            <button id="btn2">bar</button>
+            <button id="btn">open / close</button>
 
             <div class="menu-wrapper">
                 <scatter-menu id="menu" row="3" col="3">
@@ -74,11 +73,6 @@
             <script>
                 const menu = document.getElementById ('menu');
                 const btn = document.getElementById ('btn');
-                const btn2 = document.getElementById ('btn2');
-
-                btn2.addEventListener ('click', (e) => {
-                    menu._selected (5);
-                });
 
                 btn.addEventListener ('click', (e) => {
                     if (menu.getAttribute ('is-open')) {
